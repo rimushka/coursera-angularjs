@@ -80,7 +80,8 @@ function MenuSearchService($q, $http) {
 
 function HighlightSearchTermFilter() {
   return function (input, searchTerm) {
-    input = input.replace(searchTerm, "<span class='highlighted'>" + searchTerm + "</span>");
+    var searchRegEx = new RegExp("(" + searchTerm + ")", "i");
+    input = input.replace(searchRegEx, "<span class='highlighted'>$1</span>");
     return input;
   }
 }
