@@ -1,10 +1,11 @@
 (function () {
 'use strict';
 
-angular.module('NarrowItDownApp', [])
+angular.module('NarrowItDownApp', ['ngSanitize'])
 .controller('NarrowItDownController', NarrowItDownController)
 .service('MenuSearchService', MenuSearchService)
-.directive('foundItems', FoundItemsDirective);
+.directive('foundItems', FoundItemsDirective)
+.filter('highlightSearchTerm', HighlightSearchTermFilter);
 
 
 function FoundItemsDirective() {
@@ -12,6 +13,7 @@ function FoundItemsDirective() {
     templateUrl: 'foundItems.html',
     scope: {
       items: '<',
+      searchTerm: '@searchTerm',
       onRemove: '&'
     },
     controller: NarrowItDownController,
@@ -21,6 +23,7 @@ function FoundItemsDirective() {
 
   return ddo;
 }
+
 
 NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
@@ -73,6 +76,13 @@ function MenuSearchService($q, $http) {
 
     return deferred.promise;
   };
+}
+
+function HighlightSearchTermFilter() {
+  return function (input, searchTerm) {
+    input = input.replace(searchTerm, "<span class='highlighted'>" + searchTerm + "</span>");
+    return input;
+  }
 }
 
 })();

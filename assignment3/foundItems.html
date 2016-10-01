@@ -13,7 +13,7 @@
         <td>{{ item.id }}</td>
         <td>{{ item.short_name }}</td>
         <td>{{ item.name }}</td>
-        <td>{{ item.description }}</td>
+        <td ng-bind-html="item.description | highlightSearchTerm : found.searchTerm"></td>
         <td class="text-nowrap">{{ item.price_small | currency }} <span ng-if="item.small_portion_name">for a {{ item.small_portion_name }}</span> </td>
         <td class="text-nowrap">{{ item.price_large | currency }} <span ng-if="item.large_portion_name">for a {{ item.large_portion_name }}</span> </td>
         <td class="text-nowrap"><button ng-click="found.onRemove({index: $index});">Don't want this one!</button></td>
