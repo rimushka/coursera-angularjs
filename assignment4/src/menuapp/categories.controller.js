@@ -8,7 +8,7 @@ angular.module('MenuApp')
 CategoriesController.$inject = ['MenuDataService', 'categories'];
 function CategoriesController(MenuDataService, categories) {
   var ctrl = this;
-  ctrl.categories = categories.data;
+  ctrl.categories = categories;
 }
 
 })();
