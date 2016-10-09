@@ -1,0 +1,32 @@
+.content {
+  padding: 20px;
+  background: #fff;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+body {
+  background: #e3e3e3;
+  padding: 40px 0;
+}
+
+.menuHome {
+    text-align: center;
+}
+
+.categoryListing {
+  padding-top: 20px;
+}
+
+.navigation {
+  padding: 6px;
+  background: #3d3d3e;
+}
+
+.navigation a {
+  padding-left: 8px;
+  color: #76daff;
+}
