@@ -32,7 +32,7 @@
         <div class="row">
             <input type="text" name="menuitem" placeholder="Favorite Menu Item (Short Name)" required ng-model="signupCtrl.user.menuitem" validate-menu-item>
             <span ng-if="signupForm.menuitem.$error.required && signupForm.menuitem.$touched">
-             Please enter short name of your favority menu item.
+             Please enter short name of your favorite menu item.
             </span>
             <span ng-if="signupForm.menuitem.$error.validMenuItem && signupForm.menuitem.$touched">
              No such menu number exists.
