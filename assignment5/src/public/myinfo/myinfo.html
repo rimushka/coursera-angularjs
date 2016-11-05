@@ -1,0 +1,16 @@
+<h1>Registration Information</h1>
+
+<div ng-if="myinfoCtrl.myinfo == null">Not Signup Up Yet. <a ui-sref="public.signup">Sign up Now!</a></div>
+
+<div ng-if="myinfoCtrl.myinfo != null">
+    <div class="row"><h3>First name</h3>{{myinfoCtrl.myinfo.firstname}}</div>
+    <div class="row"><h3>Last name</h3>{{myinfoCtrl.myinfo.lastname}}</div>
+    <div class="row"><h3>Email</h3>{{myinfoCtrl.myinfo.email}}</div>
+    <div class="row"><h3>Favorite menu item</h3>
+        <h4 class="menu-item-title">{{myinfoCtrl.favoriteMenuItem.name}}</h4>
+        <img class="img-responsive" width="250" height="150" 
+            ng-src="{{myinfoCtrl.basePath}}/images/{{myinfoCtrl.favoriteMenuItem.short_name}}.jpg"
+            alt="{{myinfoCtrl.favoriteMenuItem.name}}">
+        <p class="menu-item-details">"{{myinfoCtrl.favoriteMenuItem.description}}"</p>
+    </div>
+</div>
