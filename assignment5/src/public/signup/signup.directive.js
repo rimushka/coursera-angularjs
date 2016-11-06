@@ -2,25 +2,28 @@
     "use strict";
 
     angular.module('public')
-    .directive("validateMenuItem", ValidateMenuItemDirective);
+        .directive("validateMenuItem", ValidateMenuItemDirective);
 
-    ValidateMenuItemDirective.$inject = ['MenuService'];
-    function ValidateMenuItemDirective(MenuService) {
+    ValidateMenuItemDirective.$inject = ['$q', 'MenuService'];
+    function ValidateMenuItemDirective($q, MenuService) {
         var ddo = {
             restrict: 'A',
             require: 'ngModel',
-            link: function (scope, element, attrs, controller) {
-                controller.$parsers.unshift(function (value) {
-                    if (value) {
-                        MenuService.getMenuItemByShortName(value).then(function (result) {
-                            controller.$setValidity('validMenuItem', (result && result.short_name == value) ? true : false);
-                        }, function (error) {
-                            controller.$setValidity('validMenuItem', false);
-                        });
-                    }
+            link: function (scope, element, attrs, ngModel) {
+                ngModel.$asyncValidators.invalidMenuItem = function (modelValue, viewValue) {
+                    var menuShortName = viewValue;
+                    var deferred = $q.defer();
+              
+                    MenuService.getMenuItemByShortName(menuShortName).then(function (result) {
+                        if (result && result.short_name == menuShortName) {
+                           deferred.resolve();
+                        }
+                    }, function (error) {
+                        deferred.reject();
+                    });
 
-                    return value;
-                });
+                    return deferred.promise;
+                }
             }
         };
         return ddo;

@@ -10,7 +10,6 @@ function SignupController(MyinfoService) {
 
    signupCtrl.submit = function() {
      signupCtrl.completed = true;
-     console.log(signupCtrl.user);
      MyinfoService.saveMyinfo(signupCtrl.user);
    };
 
